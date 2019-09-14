@@ -2,9 +2,372 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Home Page</title>
+    <title>Toh3r</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/addons/p5.dom.min.js"></script>
+    <script	src="https://cdnjs.cloudflare.com/ajax/libs/chance/1.0.18/chance.min.js"></script>
+    <script type="text/javascript" src="./js/shepherding.js"></script>
+    <script type="text/javascript" src="./js/faceRec.js"></script>
   </head>
   <body>
-    <h1>Home Page</h1>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <span class="navbar-brand">
+        <img src="css/images/logo.png" width="100" height="40" class="d-inline-block align-top" alt="">
+      </span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#aboutMe">About Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#projects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#cv">CV</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+    	<div class="row text-center">
+      	<div class = "centered">
+      	<div class = "blob-1"></div>
+      	<div class = "blob-2"></div>
+        </div>
+	     </div>
+     </div>
+
+     <div id="aboutMe" class="container animate-bottom">
+        <div class="row">
+          <div class="col-lg-2">
+          </div>
+          <div class="col-lg-8 white top">
+            <br>
+            <img class="am-img rot-right" src="./css/images/java.svg" alt="Java-Logo">
+            <h4><u>About Me</u></h4>
+              <img class="am-img rot-left" src="./css/images/javascript.svg" alt="JavaScript-Logo">
+              <p><i class="material-icons" style="font-size:16px">polymer</i> 26 years old</p>
+              <p><i class="material-icons" style="font-size:16px">polymer</i> Software Developer</p>
+              <p><i class="material-icons" style="font-size:16px">polymer</i> Galway, Ireland</p>
+              <p><i class="material-icons" style="font-size:16px">polymer</i> I like building cool things using code</p>
+              <img class="am-img rot-right node" src="./css/images/node.svg" alt="JavaScript-Logo">
+            <h4><u>Interests</u></h4>
+              <p>I like creating innovative, functional, aesthetically pleasing applications and programs.</p>
+              <p>My main interests are currently focused around full-stack <br> <img class="am-img rot-left" src="./css/images/python.svg" alt="JavaScript-Logo">
+                 development
+                with a slight preferance <br> for front-end. I also have an interest in automation through the <br> use of robotics(UAV's),
+                although I like working on really anything <br> which involves coding especially if I'm learning something new.</p>
+            <h4><u>Technologies/Skills</u></h4>
+            <img class="am-img" style="filter: grayscale(100%);" src="./css/images/react.svg" alt="JavaScript-Logo">
+            <div class="row">
+              <div class="technologies col-lg-3">
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Java/ Java8/ JavaEE</p>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Python</p>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> TDD/Unit Testing</p>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Design Patterns</p>
+              </div>
+              <div class="technologies col-lg-3">
+                <p><i class="material-icons" style="font-size:16px">polymer</i> JavaScript</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> Functional/ Object Oriented</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> jQuery/Vanilla</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> D3.js/p5.js</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> React coming soon</p>
+              </div>
+              <div class="technologies col-lg-3">
+                <p><i class="material-icons" style="font-size:16px">polymer</i> NodeJS</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> Express</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> Socket.IO/ Passport</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> Mocha/ Mongoose</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> Pug/EJS</p>
+              </div>
+              <div class="technologies col-lg-3">
+                <p><i class="material-icons" style="font-size:16px">polymer</i> SQL/ MongoDB</p>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Ubuntu/Bash</p>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Git</p>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Rest</p>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> HTML5/CSS3</p>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Agent-Based Modelling</p>
+              </div>
+            </div>
+            <br>
+          </div>
+          <div class="col-lg-2">
+          </div>
+        </div>
+    </div>
+
+    <div id="projects" class="container">
+      <div class="row">
+        <div class="col-lg-12 secHeader pro-border" style="text-align:center">
+          <h2>Projects</h2>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-lg-2">
+          </div>
+          <div class="col-lg-8 white">
+            <br>
+            <h4 style="text-align:center"><u>Facial Recognition Using a UAV</u></h4><br>
+            <div class="row">
+              <div class="col-lg-6">
+                  <h5><u>Description</u></h5>
+                  <p>I gave a UAV the ability to recognise a specific persons face, fly towards that person and then fly away.</p>
+                  <p>Facial recognition was achieved using openCV and the LBPH (Local Binary Pattern Histogram) algorithm. To train the classifier, facial detection captured 100 images of a persons face.
+                     These images are then turned into histograms. When searching for a face the UAV will break the image into a histogram anytime a face is detected. The histograms are then compared and
+                     a confidence value is created. If this value is high enough the UAV moves towards that person.</p>
+                  <p>This application also contained a page which allowed the UAV's movements to be controlled from the application.</p>
+              </div>
+              <div class="col-lg-6">
+                <h5><u>Dramatic Recreation</u></h5>
+                <p>Click a face</p>
+                <div class="row" style="position:relative">
+                  <div class="col-lg-12" style="text-align:center;">
+                    <img id="salahFace" class="faceRec-image" src="./css/images/salah-Face.png" alt="JavaScript-Logo" onclick="goToSalah()">
+                    <img id="oleFace" class="faceRec-image" src="./css/images/ole-Face.png" alt="JavaScript-Logo" onclick="goToOle()">
+                    <img id="riversFace" class="faceRec-image" src="./css/images/rivers-Face.png" alt="JavaScript-Logo"onclick="goToRivers()">
+                  </div>
+                </div>
+                <div id="uavPic" class="row" style="text-align:center;position:absolute;display:block">
+                  <div class="col-lg-12">
+                    <br>
+                    <img id="uavPic"  class="uav-image" src="./css/images/uav-Face.svg" alt="JavaScript-Logo">
+                  </div>
+                </div>
+                <div class="row uav-console">
+                  <div class="col-lg-12 " style="padding:0;">
+                    <p id="console-1" class="less-space console-header">Console</p>
+                    <p id="console-2" class="less-space" style="visibility:hidden"> &nbsp; > Moving to selected face</p>
+                    <p id="console-3" class="less-space" style="visibility:hidden"> &nbsp; > Training classifier</p>
+                    <p id="console-4" class="less-space" style="visibility:hidden"> &nbsp; > Moving away</p>
+                    <p id="console-5" class="less-space" style="visibility:hidden"> &nbsp; > Searching</p>
+                    <p id="console-6" class="less-space" style="visibility:hidden"> &nbsp; > ...</p>
+                    <p id="console-7" class="less-space" style="visibility:hidden"> &nbsp; > ...</p>
+                    <p id="console-8" class="less-space" style="visibility:hidden"> &nbsp; > Found target</p>
+                    <p id="console-9" class="less-space" style="visibility:hidden"> &nbsp; > Moving Away</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="technologies col-lg-6">
+                <br>
+                <h5><u>App Screenshots</u></h5>
+                <img class="app-image flight-image" src="./css/images/homePage.jpg" alt="JavaScript-Logo">
+                <br><br>
+                <img class="app-image flight-image" src="./css/images/salah.png" alt="JavaScript-Logo">
+              </div>
+              <div class="technologies col-lg-3">
+                <br>
+                <h5><u>Technologies</u></h5>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Front-End</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> HTML</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> CSS/ Bootstrap</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> JavaScript</p><br>
+                <h5><u>Links</u></h5>
+                <p><a href="https://github.com/Toh3r/Facial-Recognition-ARDrone2.0">
+                <img src="./css/images/github.svg" style="height:25px;width:25px;" alt="Java-Logo"> Github</a></p>
+                <!-- <p><a href="#">
+                <img src="./css/images/earth.svg" style="height:25px;width:25px;" alt="Java-Logo"> Website > I'm working on it</a></p> -->
+              </div>
+              <div class="technologies col-lg-3">
+                <br><br>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Back-End</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> NodeJS/Express</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> openCV4NodeJS/ SocketIO</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> ar-drone (UAV flight control library)</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-2">
+          </div>
+          <div class="col-lg-8 white">
+            <br>
+            <h4 style="text-align:center"><u>LSH Shepherding Algorithms</u></h4><br>
+            <div class="row">
+              <div class="col-lg-6">
+                <h5><u>Description</u></h5>
+                <p>This simulation was created as part of my Masters degree. My masters focused on the area of shepherding algorithms, which is the manipulation of emergent
+                  behaviour of group of agents by another agent</p>
+                <p>I created a number of algorithms that can be used to herd animals with a UAV/UAV's and tested them using this simulation.
+                  Animal behaviours are modelled using Reynolds flocking algorithm and UAV movements are dictated by creating target points
+                  based on the positions and behaviours of the animal agents. The UAV's movements are based on LSH principals, which are a set
+                  of principals created by animal scientists to move farm animals with minimal agitation to the animals.</p>
+                <p>This project also introduced some new methods of agent location identification and object avoidane that previously had not been implemented in any
+                  shepherding algortihm simulations.</p>
+              </div>
+              <div class="col-lg-6">
+                <h5><u>Dramatic Recreation</u></h5>
+                <button type="button" name="restartShep" onclick="startAgain()">Start/Restart</button>
+                <p> Click canvas to add UAV</p>
+                <div id="shepCanvas"></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="technologies col-lg-6">
+                <h5><u>App Screenshots</u></h5>
+                <img class="app-image" src="./css/images/shepherding1.png" alt="JavaScript-Logo">
+                <br><br>
+                <img class="app-image" src="./css/images/shepherding2.png" alt="JavaScript-Logo">
+              </div>
+              <div class="technologies col-lg-3">
+                <h5><u>Technologies</u></h5>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Front-End</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> HTML</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> CSS/ Bootstrap</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> JavaScript/p5.js</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> ChartJS</p>
+                <br>
+                <h5><u>Links</u></h5>
+                <p><a href="https://github.com/Toh3r/Shepherding-Algorithms">
+                <img src="./css/images/github.svg" style="height:25px;width:25px;" alt="Java-Logo"> Github</a></p>
+                <p><a href="http://shepherdingalgorithms.herokuapp.com/">
+                <img src="./css/images/earth.svg" style="height:25px;width:25px;" alt="Java-Logo"> Website</a></p>
+              </div>
+              <div class="technologies col-lg-3">
+                <br>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Back-End</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> NodeJS/ Express</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> JavaScript(OO)</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> p5.js</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-2">
+          </div>
+          <div class="col-lg-8 white">
+            <br>
+            <h4 style="text-align:center"><u>Organiser</u></h4><br>
+            <div class="row">
+              <div class="col-lg-6">
+                  <h5><u>Description</u></h5>
+                  <p>I'm making a planner/organiser/resource manager web application thingamigig</p>
+                  <p>Currently Under construction <i class="material-icons" style="font-size:16px">build</i>
+                    <i class="material-icons" style="font-size:16px">format_paint</i></p>
+              </div>
+              <div class="col-lg-6">
+                <h5><u>App Screenshots</u></h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="technologies col-lg-3">
+                <h5><u>Technologies</u></h5>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Front-End</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> HTML</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> CSS/SCSS</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> JavaScript</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> React</p>
+              </div>
+              <div class="technologies col-lg-3">
+                <br>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Back-End</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> NodeJS</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> Express</p>
+                <p><i class="material-icons" style="font-size:16px">subdirectory_arrow_right</i> MongoDB</p>
+              </div>
+              <div class="technologies col-lg-6">
+              </div>
+            </div>
+            <h5><u>Links</u></h5>
+            <p>Github: </p>
+            <p>Website: </p>
+          </div>
+          <div class="col-lg-2">
+          </div>
+        </div>
+    </div>
+
+    <div id="cv" class="container">
+      <div class="row">
+        <div class="col-lg-12 secHeader cv-border" style="text-align:center">
+          <h2>CV</h2>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-lg-2">
+          </div>
+          <div class="col-lg-8 white">
+            <br>
+            <div class="row">
+              <div class="col-lg-6">
+                  <h5><u>Education</u></h5>
+                  <p>NUIG 2019<br>MSc Software Design & Development <br> Currently on for a 1.1</p>
+                  <p>NUIG 2016<br>BA I.T & Legal Studies</p>
+              </div>
+              <div class="col-lg-6">
+                <h5><u>Work Expierance</u></h5>
+                <p>Retail Employee / 2010 - 2019<br> Joyce's Supermarket</p>
+                <p>Merchendiser / 2016 - 2017<br> Arrabawn</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="technologies col-lg-3">
+                <h5><u>Personal Skills</u></h5>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Analytical</p>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Innovative</p>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Organised</p>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Good Communicater</p>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Hard-working</p>
+              </div>
+              <div class="technologies col-lg-3">
+                <br>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Work well indivdually or as a part of a team</p>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Independant learner</p>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Motivated</p>
+              </div>
+              <div class="technologies col-lg-6">
+                <h5><u>Hobbies and Interests</u></h5>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Playing/watching football. Watching most sports</p>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Video Games</p>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Listening/playing musiz / Going to concerts</p>
+                <p><i class="material-icons" style="font-size:16px">polymer</i> Being active in general</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2">
+          </div>
+        </div>
+    </div>
+
+    <div id="contact" class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h4><u>Contact</u></h4>
+          <p><i class="material-icons" style="font-size:16px">fiber_manual_record</i> dan.t@live.ie <i class="material-icons" style="font-size:16px">fiber_manual_record</i></p>
+          <p><i class="material-icons" style="font-size:16px">fiber_manual_record</i> d.toher1@nuigalway.ie <i class="material-icons" style="font-size:16px">fiber_manual_record</i></p>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+
   </body>
 </html>
