@@ -25,10 +25,10 @@ a {
 
 /* Fixes the fixed navbar overlapping content problem when clicking anchor tags */
 :target:before {
-content:"";
-display:block;
-height:63px;
-margin:-63px 0 0;
+  content:"";
+  display:block;
+  height:63px;
+  margin:-63px 0 0;
 }
 
 canvas {
@@ -107,22 +107,17 @@ button:active {
 #aboutMe {
   min-height: 100vh;
   min-width: 95vw;
-  background-image: url('./images/white_Lights.jpg');  Photo by Serge Kutuzov on Unsplash
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  /* background-color: black; */
+  /* background: linear-gradient(to right, white, black 20%, black 80%, white); */
+  background: rgb(35,35,35);
   border-bottom: 5px solid;
-  border-image: linear-gradient(to right, rgb(255,255,255), rgb(15,66,244), rgb(255,255,255)) 1
+  border-image: linear-gradient(to right, rgb(255,255,255), rgb(15,66,244), rgb(255,255,255)) 1;
 }
 
 #projects {
   min-height: 100vh;
   min-width: 95vw;
-  background-image: url('./images/neon-light.jpg');  Photo by Serge Kutuzov on Unsplash
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  /* background: linear-gradient(to right, rgb(255,255,255), rgb(30,30,150) 20%, rgb(30,30,150) 80%, rgb(255,255,255)); */
+  background: rgb(35,35,35);
   border-bottom: 5px solid;
   border-image: linear-gradient(to right, rgb(255,255,255), rgb(244,30,30), rgb(255,255,255)) 1;
 }
@@ -130,11 +125,8 @@ button:active {
 #cv {
   min-height: 100vh;
   min-width: 95vw;
-  background-image: url('./images/red_Neon.jpg');  Photo by Adam Do on Unsplash
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  /* background-color: black; */
+  /* background: linear-gradient(to right, rgb(255,255,255), rgb(180,30,30) 20%, rgb(180,30,30) 80%, rgb(255,255,255)); */
+  background: rgb(35,35,35);
   border-bottom: 5px solid;
   border-image: linear-gradient(to right, rgb(255,255,255), rgb(25,25,25), rgb(255,255,255)) 1;
 }
@@ -143,8 +135,7 @@ button:active {
   min-height: 20vh;
   min-width: 95vw;
   border-bottom: 5px solid;
-  border-image: linear-gradient(to right, rgb(255,255,255), rgb(25,25,25), rgb(255,255,255)) 1;
-  background-color: black;
+  background-color: rgb(15, 15, 15);
   color: white;
   text-align: center;
   padding-top: 10px;
@@ -184,7 +175,7 @@ button:active {
   padding-bottom: 10px;
   border-bottom: 5px solid;
   border-image: linear-gradient(to right, rgb(255,255,255), rgb(15,66,244), rgb(255,255,255)) 1;
-  background-color: rgb(15, 15, 15);
+  background: black;
 }
 
 .cv-border {
