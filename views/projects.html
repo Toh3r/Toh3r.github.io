@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css"
+    />
+    <link rel="stylesheet" href="../CSS/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Play&display=swap"
+      rel="stylesheet"
+    />
+    <title>Projects</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <span class="navbar-brand">
+        <a href="../index.html"
+          ><img
+            id="navLogo"
+            src="../css/images/TransparantLogo.png"
+            class="d-inline-block align-top"
+            alt="NavLogo"
+        /></a>
+      </span>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./me.html">Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./projects.html">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./cheats.html">Cheat Sheets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container dark-container top-container">
+      <div class="light-container">
+        <h3><u>Projects</u></h3>
+      </div>
+    </div>
+    <div class="container dark-container">
+      <div class="light-container left">
+        <h3><u>Shepherding Algorithms</u></h3>
+        <br />
+        <h4>Links</h4>
+        <a href="https://github.com/Toh3r/Shepherding-Algorithms"
+          ><p><i class="github icon"></i>:Github</p></a
+        >
+        <a href="http://shepherdingalgorithms.herokuapp.com/"
+          ><p><i class="laptop icon"></i>: Website</p></a
+        >
+        <h4>Overview</h4>
+        <p>
+          This project was done as a part of my masters thesis, the main aim of
+          which was to create a series of algorithms that can be used by a
+          UAV/multiple UAV's to autonomously herd farm animals. This was
+          accomplised by creating an Agent-Based Modelling (ABM) simulation. ABM
+          is a form of computational modelling which allows for the study of
+          interactions between individual, autonomous agents and with their
+          environment. Agents are essentially objects which are given a number
+          of behaviours/actions to simulate some real-world entity, while the
+          environment is area they enclosed in. The simulation was created using
+          object-oriented JavaScript and
+          <a href="https://p5js.org/">p5.js</a>, a library based on the
+          processing programming language which contains a number of functions
+          and for working with a canvas and vectors.
+        </p>
+        <h4>Animal Agents</h4>
+        <img src="../CSS/images/flocking.PNG" alt="Flocking Rules" />
+        <p>
+          Animal models were creating using Craig Reynolds
+          <a
+            href="https://team.inria.fr/imagine/files/2014/10/flocks-hers-and-schools.pdf"
+          >
+            Flocking Algorithm</a
+          >, Craig Reynolds
+          <a href="https://www.red3d.com/cwr/papers/1999/gdc99steer.pdf"
+            >Steering Behaviour Algorithms</a
+          >
+          and a number of addtional behaviours to simulate herd animal
+          behaviour. Reynolds Flocking model emulates the flocking or herding
+          behavior of animals by giving them three behaviors. These behaviours
+          are seperation(where animal agents steer to avoid collision with each
+          other), alignment (where animal agents steer to the average velocity
+          and heading of their neighbours) and cohesion (where animal agents
+          move the the average position of its neighbours). Once applied to
+          agents in a simulation, these agents will inherently display the
+          emergent behaviour displayed by animals when flocking, herding or
+          schooling.
+        </p>
+        <p>
+          Steering for each agent is calculated using Reynolds steering
+          alogrithm where <br />
+          <em>steering = desired velocity - velocity</em>. <br />
+          Additional behaviors added to animal agents to have them emulate herd
+          animal behaviour where uav separation (where animals steer away from a
+          UAV), goal setting (where animals steer toward a goal point), novelty
+          separation (where animals agents will steer to avoid novel or
+          hazardous environments) and wander(when not in the presence of a UAV
+          animal agents will move slowly in random directions to emulate
+          grazing).
+        </p>
+        <p>
+          Each animal agent has a neighbourhood which represents the extent of
+          an animal agents sensory range.The velocity of each animal and the
+          force strength of each behaviour mentioned above changes depending on
+          the presense of other animal agents, uav agents or environmental
+          factors in this neighbourhood.
+        </p>
+        <h4>UAV Agents</h4>
+        <p>
+          The aim of the UAV's in this simulation is to form a group of animal
+          agents and move that group to some goal point. A UAV's steering is
+          also calculated Reynolds Steering algoritms. Two different methods
+          were implemeted for a UAV agent to locate animal agents, these are
+          named gps identification and oracle identification. When using gps
+          identification animal agent locations are passed directly to a UAV
+          agent. When using oracle identifiaction, a seperate UAV is introduced
+          (named the oracle) which collects the location of animals agents and
+          passes them to the UAV agent.
+        </p>
+        <p>
+          A UAV moves towards various steering points to accomplish its goals.
+          These steering points are dependant on its own position, positions of
+          the animal agents, velocity of the animal agents, if the animal agents
+          are in the vicinity of a harmful area and the position of the
+          goal/exit point.
+        </p>
+        <h4>GUI</h4>
+        <p>
+          Two GUI's were created, one which allowed for the properties and
+          behaviours of animals to be altered during simulation and one for
+          running final tests. The first of which is displayed below.
+          <img src="../CSS/images/shepherding1.PNG" alt="ShepGUI" />
+          <img src="../CSS/images/shepherding2.PNG" alt="Shep2GUI" />
+        </p>
+        <p>\o/ <span style="float: right">\o/</span></p>
+      </div>
+    </div>
+    <div class=" container dark-container">
+      <div class="light-container left">
+        <h3><u>Facial Recognition Using a UAV</u></h3>
+        <br />
+        <h4>Links</h4>
+        <a href="https://github.com/Toh3r/Facial-Recognition-ARDrone2.0"
+          ><p><i class="github icon"></i>:Github</p></a
+        >
+        <h4>Overview</h4>
+        <p>
+          The aim of this project was to give an AR Drone 2.0 the ability to fly
+          to a specific person and once it was within a certain distance to that
+          person, fly away again. This was accomplised through the use of facail
+          recognition. This project was completed using NodeJS and a number of
+          libraries. The libraries utilised for this project included express,
+          socketIO, opencv4nodejs and ar-drone.
+        </p>
+        <h4>Facail Recognition</h4>
+        <img src="../CSS/images/salah.PNG" alt="Confidence Values" />
+        <p>
+          OpenCV and it's built in LBPH (Linear Binary Pattern Histogram)
+          algortithm was utilied for computer vision functionalities. To train
+          the facail recognition classifier, a pre-built facail detection
+          classifier was used to decect a specific face. 100 images of a face
+          were collected. These images were broken into histograms which are
+          used for comparison when trying to detect a specific face. When
+          detecting a face the UAV flies of the ground and rotates, when a face
+          is detected it broken into a histogram and compared with the histogram
+          created during the training period. Once compared a confidence value
+          is outputted. If the confidence value is lower than a certain
+          percentage, the UAV will continue to rotate in search of the correct
+          person. If the confidence value is higher than a certain percentage,
+          the UAV will move toward that person. Once the UAV is at a certain
+          distance to that person, the UAV will fly backwards and land.
+        </p>
+        <h4>GUI</h4>
+        <p>
+          Two GUI's were create for this project. One for facial recogntion and
+          one which contained controls for th UAV, allowing it to be controlled
+          from the app. The facail recognition page is displayed below, the cafe
+          image is where the images from the UAV are displayed (Yes, I tried to
+          make it deliver coffee and Yes, it was a bad idea).
+          <img src="../CSS/images/homePage.JPG" alt="FaceRec GUI" />
+        </p>
+        <p>\o/ <span style="float: right">\o/</span></p>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
