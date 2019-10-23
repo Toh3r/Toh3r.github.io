@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Play&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      header:hover {
+        background-color: lightblue;
+      }
+      .nav:hover {
+        background-color: forestgreen;
+      }
+      section:hover {
+        background-color: forestgreen;
+      }
+      aside:hover {
+        background-color: forestgreen;
+      }
+      main:hover {
+        background: lightblue;
+      }
+      article:hover {
+        background: red;
+      }
+      footer:hover {
+        background-color: lightblue;
+      }
+    </style>
+    <title>HTML</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <span class="navbar-brand">
+        <a href="../../index.html"
+          ><img
+            id="navLogo"
+            src="../../css/images/TransparantLogo.png"
+            class="d-inline-block align-top"
+            alt="NavLogo"
+        /></a>
+      </span>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../me.html">Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../projects.html">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../cheats.html">Cheat Sheets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="sidebar" class="goAway">
+      <button id="closer" title="Close sidebar" class="side-button">X</button>
+      <div class="light-container" style="margin-top: 85px;">
+        <a href="#links"><h5>Links</h5></a>
+        <a href="#boiler"><h5>BoilerPlate</h5></a>
+        <a href="#tags"><h5>Semantic Tags</h5></a>
+      </div>
+    </div>
+    <button title="Toggle sidebar" class="side-button"><h5>Menu</h5></button>
+
+    <div class="container dark-container top-container">
+      <div class="light-container left">
+        <h5 id="links">Links</h5>
+      </div>
+      <div class="light-container left">
+        <p>
+          <a href="https://www.w3schools.com/html/default.asp">W3</a>
+          - General Tutorials, Links, etc...
+        </p>
+        <p>
+          <a href="https://www.tutorialrepublic.com/html-examples.php"
+            >Tutorial Republic</a
+          >
+          - Tutorials, BoilerPlate code
+        </p>
+          <a href="https://html5up.net"
+            >HTML5UP</a
+          >
+          - Website Templates
+        </p>
+      </div>
+    </div>
+
+    <div class="container dark-container">
+      <div class="light-container left">
+        <h5 id="boiler">HTML5 BoilerPlate</h5>
+      </div>
+      <div class="light-container left">
+        <div class="code-container"><pre class="language-html"><code>
+            <script type="prism-html-markup"><!DOCTYPE html>
+            <html lang="en">
+  
+              <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta http-equiv="X-UA-Compatible" content="ie=edge">
+                <meta name="description" content="HTML5 Boilerplate">
+                <meta name="author" content="Daniel">
+                <!-- StyleSheets -->
+                <title>Document</title>
+              </head>
+  
+              <body>
+                  <nav>
+                      <!-- Navbar -->
+                  </nav>
+                  <header>
+                      <!-- Well -->
+                  </header>
+                    
+                    <section>
+                      <main>
+                        <section>
+                            <!-- Content -->
+                        </section>
+                        <section>
+                            <!-- More Content -->
+                        </section>
+                      </main>
+                    </section>
+                    
+                    <footer>
+                      <!-- Bye -->
+                    </footer>
+  
+              <!-- Scripts -->
+              </body>
+            </html></script>
+          </code></pre></div>
+      </div>
+    </div>
+
+    <div class="container dark-container">
+      <div class="light-container left"><h5 id="tags">Semantic Tags</h5></div>
+      <div class="light-container left">
+        <div class="example">
+          <h6>Bog Standard Example Using Semantic Tags</h6>
+          <header style="border: 2px solid blue; border-radius: 6px; padding: 2px; margin: 2px;">
+              <nav class="nav" style="border: 2px solid blue;border-radius: 6px;">&ltNav></nav>&ltHeader></header>
+          
+          <main style="border: 2px solid blue;border-radius: 6px; padding: 2px; margin: 2px;">
+           &ltMain> <aside style="float: right; width: 28%; height: 208px;border: 2px solid blue;border-radius: 6px; position: relative">
+            &ltAside> </aside>
+           <Section style="border: 2px solid blue;border-radius: 6px; width: 70%; margin: 2px;">&ltSection>
+            <article style="border: 2px solid blue;border-radius: 6px; margin: 2px;">&ltArticle></article>
+            <article style="border: 2px solid blue;border-radius: 6px; margin: 2px;">&ltArticle></article>
+          </Section>
+           <Section style="border: 2px solid blue; width: 70%; margin: 2px">&ltSection>
+            <article style="border: 2px solid blue;border-radius: 6px; margin: 2px;">&ltArticle></article>
+            <article style="border: 2px solid blue;border-radius: 6px; margin: 2px;">&ltArticle></article>
+          </Section>
+          </main>
+          <Footer style="border: 2px solid blue;border-radius: 6px; padding: 2px; margin: 2px;">
+              &ltFooter></Footer>
+        </div>
+        <p>Can be used instead of non-semantic tags when possible(divs)</p>
+        <p>More descriptive than divs and create cleaner code</p>
+        <ul><li>
+            &ltheader> - Header Section
+          </li>
+          <li>
+            &ltnav> - For navigation links
+          </li>
+          <li>
+            &ltsection> - Group related code
+          </li>
+          <li>
+            &ltmain> - Main body of content
+          </li>
+          <li>
+            &ltarticle> - Self Contained Content
+          </li>
+          <li>
+            &ltaside> - For content related to main content or article
+          </li>
+          <li>
+            &ltfigure> - Images
+          </li>
+          <li>
+            &ltfigcaption> - caption for figure tag
+          </li>
+          <li>
+            &ltdetails> - Yup
+          </li>
+          <li>
+            &ltsummary> - Heading for details tag
+          </li>
+          <li>
+            &lttime>
+          </li>
+          <li>
+            &ltmark> - For highlighted areas
+          </li>
+          <li>
+            &ltfooter> - Bottom of page
+          </li></ul>
+        
+      </div>
+    </div>
+
+    <script>
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach(button =>
+        button.addEventListener('click', _ => {
+          document.getElementById('sidebar').classList.toggle('goAway');
+        })
+      );
+    </script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../../JS/prism.js"></script>
+  </body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Play&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css"
+    />
+    <title>Responive Design</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <span class="navbar-brand">
+        <a href="../../index.html"
+          ><img
+            id="navLogo"
+            src="../../css/images/TransparantLogo.png"
+            class="d-inline-block align-top"
+            alt="NavLogo"
+        /></a>
+      </span>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../../">Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../views/projects.html">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../views/cheats.html">Cheat Sheets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../views/contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div id="sidebar" class="goAway">
+      <button id="closer" title="Close sidebar" class="side-button">X</button>
+      <div class="light-container" style="margin-top: 85px;">
+        <a href="#general"><h5>General</h5></a>
+        <a href="#flex"><h5>FlexBox</h5></a>
+        <a href="#grid"><h5>CSS Grid</h5></a>
+      </div>
+    </div>
+    <button title="Toggle sidebar" class="side-button"><h5>Menu</h5></button>
+
+    <div class="container dark-container top-container">
+      <div class="light-container left">
+        <h5 id="general">General Stuff</h5>
+      </div>
+      <div class="light-container left">
+        <h5>Links</h5>
+        <p>
+          <a href="https://www.youtube.com/watch?v=srvUrASNj0s">FreeCodeCamp</a>
+          Responsive Web Design Course (Youtube) <br />
+          <a href="https://www.w3schools.com/html/html_responsive.asp">W3</a>
+          Tags, code snippets <br />
+          <a href="https://responsivedesign.is/">ResponsiveDesign.is</a>
+          Tutorials
+        </p>
+        <h5>CSS Units</h5>
+        <p>
+          Absolute Units - Pixels - Stay static in size
+          <i class="x icon" style="color: red;"></i>
+        </p>
+        <p>
+          Percentage Units - Relative to size of container, 100% width = 100% of
+          containers width
+          <i class="check icon" style="color: green;"></i><br />
+          Use for containers, images, block elements
+        </p>
+        <p>
+          Relative Units - EM, REM (Relative to font size), VH, VW (Realative to
+          viewport size)
+          <i class="check icon" style="color: green;"></i><br />
+          1em/rem = 100%, 1.5 = 150& etc... <br />
+          em - Relative to parents font-size (defualt is 16px), use for
+          padding/margin <br />
+          rem - Relative to the root of the document, use for font size <br />
+          Set root font size (in html tag) to 62.5% (10px) for easy maths
+        </p>
+
+        <div class="code-container">
+          <h5>Ems and Rems</h5>
+          <pre class="language-css"><code class="language-css">
+            .html {
+                font-size: 62.5%; /* Set root font-size to 10px */
+            }
+
+            .parent {
+                margin: 1.25em;
+                padding: 0.75em;
+            }
+
+            .child {
+                font-size: 1.25rem;
+            }
+        </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Responsive Containers</h5>
+          <pre class="language-css"><code class="language-css">
+            .container {
+                width: 90%; /* Will take up 90% of viewport/container */
+                max-width: 650px; /* But will not excede 650px */
+            }
+        </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Responsive Images</h5>
+          <pre class="language-css"><code class="language-css">
+            img {
+                width: 100%; /* 100% width of container */
+                /* Set height to auto, or just don't set it */
+            }
+        </code></pre>
+        </div>
+
+        <h5>Media Querys</h5>
+        <p>
+          Target different types of media, can change css depending on
+          device/device properties
+        </p>
+        <div class="code-container">
+          <h5>Screen size</h5>
+          <pre class="language-css"><code class="language-css">
+            body {
+                background: red;
+            }
+
+            /* When screen width > than 400px change background to blue */
+            /* Don't need to declare screen */
+            @media screen and (max-width: 600px) {
+                body { /* Declare selector */
+                    display-flex:; 
+                }
+            }
+
+            /* When screen too small, let columns stack */
+            .col {
+                display: flex;
+            }
+
+            @media (max-width: 600px) {
+                .col {
+                    /* Switches main axis */
+                    flex-direction: column;
+                }
+            }
+              </code></pre>
+        </div>
+        <h5>Mobile first</h5>
+        Start working on mobile view and work way up...
+        <p></p>
+      </div>
+    </div>
+
+    <div class="container dark-container">
+      <div class="light-container left"><h5 id="flex">FlexBox</h5></div>
+      <div class="light-container left">
+        <h5>Basics</h5>
+        <p>
+          Stop divs stacking, fit content thats inside them on horizontal axis
+          <br />
+          Set parent to display: flex <br />
+        </p>
+
+        <div class="code-container">
+          <h5>Flexbox Properties</h5>
+          <pre class="language-css"><code class="language-css">
+            .parent {
+                display: flex; /* Affects all child elements */
+            }
+            .child {
+                display: flex; 
+                flex-wrap: wrap; /* Wrap elements */
+                justify-content: center; /* Center elements horizontally */
+                justify-content: space-between; /* Spacing */
+                justify-content: space-around; /* Spacing */
+                justify-content: space-evenly; /* Spacing */
+                align-items: center; /* Center elements vertically */
+                align-items: flex-start; /* Align at top of parent */
+            }
+            </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="container dark-container">
+      <div class="light-container left"><h5 id="grid">CSS Grid</h5></div>
+      <div class="light-container left">
+        Set parent to display:grid;<br />
+        Tracks - columns/rows <br />
+        Cell - One section of a grid <br />
+        Grid Area - A combination of cells, must be rectangular <br />
+        <br />
+        <div class="code-container">
+          <h5>Flexbox Properties</h5>
+          <pre class="language-css"><code class="language-css">
+            .parent {
+                display: grid; /* Affects all grid elements (child divs) */
+            }
+            .child {
+                grid-template-columns: 150px 100px 125ox; /* Set number of columns and width of columns */
+                grid-template-columns: repeat (3, 200px); /* 200px for all columns */
+                grid-template-columns: 1fr 3fr 2fr;  /* Fraction of grid to take up */
+                grid-column gap: 20px; /* Margin between columns */
+                /* Resize columns depending on screen size */
+                grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+                grid-column-start: 1; /* Set Starting Column */
+                grid-column-end: 3; /* Set Ending Column */
+                grid-column: 1 / 3; /* Start/End on same line */
+                grid-column-end: span 2; /* Take up 2 cols */
+            }
+            </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach(button =>
+        button.addEventListener('click', _ => {
+          document.getElementById('sidebar').classList.toggle('goAway');
+        })
+      );
+    </script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../../JS/prism.js"></script>
+  </body>
+</html>

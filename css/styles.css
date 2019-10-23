@@ -7,15 +7,18 @@ body {
   overflow-x: hidden;
   color: white;
   background: whitesmoke;
+  scroll-behavior: smooth;
 }
 .dark-container {
   margin-top: 30px;
-  max-width: 90vw;
+  width: 90%;
+  max-width: 1100px;
   padding: 30px 10px 30px 10px;
   border: 2px solid black;
   border-radius: 8px;
   background: rgb(15, 15, 15, 0.9);
   text-align: center;
+  animation: fadein 1s;
 }
 
 .light-container {
@@ -66,11 +69,67 @@ h5 {
   box-shadow: 0 4px 12px rgb(0, 0, 0, 0.8);
 }
 
+/* ------------ ScrollBar ------------ */
+
+::-webkit-scrollbar {
+  background: rgb(15, 15, 15);
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid black;
+  background: whitesmoke;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: lightgrey;
+}
+
+/* ------------ Code Blocks ------------ */
+
+.code-container {
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 30px;
+}
+
+pre[class*='language-'] {
+  border-radius: 8px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  font-size: 13px;
+  tab-size: 1;
+}
+
+code[class*='language-'] {
+  tab-size: 1;
+}
+
+div.code-toolbar button {
+  margin-right: 20px;
+}
+
+.example {
+  float: right;
+  width: 50vw;
+  max-width: 500px;
+  border: 2px solid black;
+  border-radius: 6px;
+  text-align: center;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
 /* ---------- Navbar ---------- */
 .navbar {
   padding-top: 2px;
   padding-bottom: 2px;
   background-color: rgb(0, 0, 0, 0.8);
+  animation: fadein 2s;
 }
 
 .navbar-toggler-icon {
@@ -97,10 +156,17 @@ nav .nav-link:hover {
   opacity: 0.5;
 }
 
+:target:before {
+  content: '';
+  display: block;
+  height: 135px;
+  margin: -135px 0 0;
+}
+
 /* ---------- Index Page Logo Section ---------- */
 .logo-box {
   height: 100vh;
-  background-color: whitesmoke;
+  background-color: gray;
   padding-top: 30vh;
   text-align: center;
   border-bottom: 2px solid white;
@@ -124,7 +190,7 @@ nav .nav-link:hover {
   border-radius: 10px;
   background: rgb(10, 10, 10);
   color: white;
-  animation: fadein 5s;
+  animation: fadein 3s;
 }
 
 @keyframes fadein {
@@ -160,6 +226,8 @@ nav .nav-link:hover {
 .card:hover {
   transform: translateY(-2px);
   box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.5);
+  background-color: rgb(85, 85, 85);
+  color: whitesmoke;
 }
 
 .card img {
@@ -169,16 +237,22 @@ nav .nav-link:hover {
   max-height: 120px;
 }
 
+.card a {
+  text-decoration: none;
+}
+.card a:hover {
+  color: whitesmoke;
+}
+
 /* ---------- Index-Page Bottom Section ---------- */
 .home-card {
-  background-image: linear-gradient(
-    to bottom right,
-    whitesmoke,
-    rgb(50, 50, 50),
-    whitesmoke
-  );
+  background-image: url(../css/images/poly.svg);
+  background-size: contain;
+  background-color: whitesmoke;
   min-height: 50vh;
   min-width: 35vw;
+  background-position: center;
+  background-repeat: no-repeat;
   text-align: center;
   flex: 1;
   margin: 10px 10px 25px 10px;
@@ -218,10 +292,60 @@ nav .nav-link:hover {
   max-width: 20em;
   margin: 0 auto;
   margin-top: 5em;
+  opacity: 0.8;
 }
 
 .home-card-content:hover {
-  opacity: 0.9;
   transform: translateY(-1px);
   box-shadow: 0px 6px 15px rgba(255, 255, 255);
+}
+
+/* ------------ Sidebar ------------ */
+#sidebar {
+  height: 100%;
+  width: 200px;
+  overflow: auto;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  background: rgb(15, 15, 15);
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.5);
+  animation: fadein 2s;
+  transition: width 0.5s;
+}
+
+#sidebar.goAway {
+  width: 0;
+}
+
+.side-button {
+  position: absolute;
+  width: 100px;
+  color: whitesmoke;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: rgb(0, 0, 0, 0.8);
+  margin-top: 54px;
+  border-radius: 0px 0px 50px 50px;
+  animation: fadein 2s;
+}
+
+.side-button:hover {
+  opacity: 0.7;
+  color: gray;
+}
+
+#sidebar a {
+  color: rgb(15, 15, 15);
+  text-align: center;
+}
+
+#closer {
+  float: right;
+}
+
+.red {
+  background-color: firebrick;
 }

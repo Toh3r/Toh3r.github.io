@@ -10,25 +10,31 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Play&display=swap"
       rel="stylesheet"
     />
-    <style>
-      body {
-        background-color: rgb(15, 15, 15);
-      }
-    </style>
-    <title>HomePage</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css"
+    />
+    <title>CSS Things</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg fixed-top">
       <span class="navbar-brand">
-        <a href="index.html"
+        <a href="../../index.html"
           ><img
             id="navLogo"
-            src="css/images/TransparantLogo.png"
+            src="../../css/images/TransparantLogo.png"
             class="d-inline-block align-top"
             alt="NavLogo"
         /></a>
@@ -48,57 +54,51 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="./views/me.html">Me</a>
+            <a class="nav-link" href="../../views/me.html">Me</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./views/projects.html">Projects</a>
+            <a class="nav-link" href="../../views/projects.html">Projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./views/cheats.html">Cheat Sheets</a>
+            <a class="nav-link" href="../../views/cheats.html">Cheat Sheets</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./views/contact.html">Contact</a>
+            <a class="nav-link" href="../../views/contact.html">Contact</a>
           </li>
         </ul>
       </div>
     </nav>
-
-    <div class="logo-box">
-      <div class="inner-logo-box">
-        <img
-          class="centered-image"
-          src="css/images/TransparantLogo.png"
-          alt="Logo"
-        />
-        <br /><br />
-        <h3 class="hello">\o &nbsp;&nbsp; Hello &nbsp;&nbsp; o/</h3>
+    <div id="sidebar" class="goAway">
+      <button id="closer" title="Close sidebar" class="side-button">X</button>
+      <div class="light-container" style="margin-top: 85px;">
+        <a href="#general"><h5>General</h5></a>
+        <a href="#flex"><h5>FlexBox</h5></a>
+        <a href="#grid"><h5>CSS Grid</h5></a>
       </div>
     </div>
+    <button title="Toggle sidebar" class="side-button"><h5>Menu</h5></button>
 
-    <div class="container card-container">
-      <div class="home-card">
-        <div class="home-card-content">
-          <a href="./views/me.html"><h3 class="aboutMe">Me</h3></a>
-        </div>
-      </div>
-      <div class="home-card">
-        <div class="home-card-content">
-          <a href="./views/projects.html"><h3 class="projects">Projects</h3></a>
-        </div>
-      </div>
-      <div class="home-card">
-        <div class="home-card-content">
-          <a href="./views/cheats.html"><h3 class="notes">Cheat Sheets</h3></a>
-        </div>
-      </div>
-      <div class="home-card">
-        <div class="home-card-content">
-          <a href="./views/contact.html"
-            ><h3 class="contact">Contact || Links</h3></a
-          >
-        </div>
-      </div>
+    <div class="container dark-container top-container">
+      <div class="light-container left"><h5>Vanilla</h5></div>
+      <div class="light-container left"></div>
     </div>
+    <div class="container dark-container">
+      <div class="light-container left"><h5>Bootstrap</h5></div>
+      <div class="light-container left"></div>
+    </div>
+    <div class="container dark-container">
+      <div class="light-container left"><h5>Semantic UI</h5></div>
+      <div class="light-container left"></div>
+    </div>
+
+    <script>
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach(button =>
+        button.addEventListener('click', _ => {
+          document.getElementById('sidebar').classList.toggle('goAway');
+        })
+      );
+    </script>
 
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -115,5 +115,6 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script src="../../JS/prism.js"></script>
   </body>
 </html>
