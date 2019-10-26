@@ -213,7 +213,8 @@ nav .nav-link:hover {
 
 .card {
   min-width: 15em;
-  min-height: 5em;
+  max-width: 15em;
+  min-height: 10em;
   text-align: center;
   flex: 1;
   margin: 10px;
@@ -226,8 +227,8 @@ nav .nav-link:hover {
 .card:hover {
   transform: translateY(-2px);
   box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.5);
-  background-color: rgb(85, 85, 85);
-  color: whitesmoke;
+  /* background-color: rgb(85, 85, 85); */
+  /* color: whitesmoke; */
 }
 
 .card img {
@@ -240,8 +241,9 @@ nav .nav-link:hover {
 .card a {
   text-decoration: none;
 }
-.card a:hover {
-  color: whitesmoke;
+
+.red:hover {
+  background-color: red;
 }
 
 /* ---------- Index-Page Bottom Section ---------- */

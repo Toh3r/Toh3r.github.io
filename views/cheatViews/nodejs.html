@@ -10,24 +10,21 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css"
-    />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Play&display=swap"
       rel="stylesheet"
     />
-    <title>Contact</title>
+    <title>HTML</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg fixed-top">
       <span class="navbar-brand">
-        <a href="../index.html"
+        <a href="../../index.html"
           ><img
             id="navLogo"
-            src="../css/images/TransparantLogo.png"
+            src="../../css/images/TransparantLogo.png"
             class="d-inline-block align-top"
             alt="NavLogo"
         /></a>
@@ -47,45 +44,51 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="./me.html">Me</a>
+            <a class="nav-link" href="../me.html">Me</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./projects.html">Projects</a>
+            <a class="nav-link" href="../projects.html">Projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./cheats.html">Cheat Sheets</a>
+            <a class="nav-link" href="../cheats.html">Cheat Sheets</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./contact.html">Contact</a>
+            <a class="nav-link" href="../contact.html">Contact</a>
           </li>
         </ul>
       </div>
     </nav>
 
+    <div id="sidebar" class="goAway">
+      <button id="closer" title="Close sidebar" class="side-button">X</button>
+      <div class="light-container" style="margin-top: 85px;">
+        <a href="#links"><h5>Links</h5></a>
+        <a href="#boiler"><h5>BoilerPlate</h5></a>
+        <a href="#tags"><h5>Semantic Tags</h5></a>
+      </div>
+    </div>
+    <button title="Toggle sidebar" class="side-button"><h5>Menu</h5></button>
+
     <div class="container dark-container top-container">
-      <div class="light-container">
-        <u><h3>Contact</h3></u>
-        <h5><i class="at icon"></i>: dan.t@live.ie</h5>
-        <h5><i class="at icon"></i>: d.toher1@nuigalway.ie</h5>
-        <h5>--------------</h5>
-        <h5>Either or, I use both...</h5>
+      <div class="light-container left">
+        <h5 id="links">Links</h5>
       </div>
     </div>
 
     <div class="container dark-container">
-      <div class="light-container">
-        <u><h3>Links</h3></u>
-        <a href="https://github.com/Toh3r"
-          ><h5><i class="github icon"></i>:Github</h5></a
-        >
-        <a href="http://shepherdingalgorithms.herokuapp.com/"
-          ><h5><i class="laptop icon"></i>: Masters Thesis Website</h5></a
-        >
-        <a href="linkedin.com/in/daniel-toher-1b4412176"
-          ><h5><i class="linkedin icon"></i>: LinkedIn</h5></a
-        >
+      <div class="light-container left">
+        <h5 id="links">General</h5>
       </div>
     </div>
+
+    <script>
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach(button =>
+        button.addEventListener('click', _ => {
+          document.getElementById('sidebar').classList.toggle('goAway');
+        })
+      );
+    </script>
 
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -102,5 +105,6 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script src="../../JS/prism.js"></script>
   </body>
 </html>
