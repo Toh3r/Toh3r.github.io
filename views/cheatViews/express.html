@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Play&display=swap"
+      rel="stylesheet"
+    />
+    <title>Express</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <span class="navbar-brand">
+        <a href="../../index.html"
+          ><img
+            id="navLogo"
+            src="../../css/images/TransparantLogo.png"
+            class="d-inline-block align-top"
+            alt="NavLogo"
+        /></a>
+      </span>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../me.html">Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../projects.html">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../cheats.html">Cheat Sheets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="sidebar" class="goAway">
+      <button id="closer" title="Close sidebar" class="side-button">X</button>
+      <div class="light-container" style="margin-top: 85px;">
+        <a href="#links"><h5>Links</h5></a>
+        <a href="#boiler"><h5>BoilerPlate</h5></a>
+        <a href="#tags"><h5>Semantic Tags</h5></a>
+      </div>
+    </div>
+    <button title="Toggle sidebar" class="side-button"><h5>Menu</h5></button>
+
+    <div class="container dark-container top-container">
+      <div class="light-container left">
+        <h5 id="links">Express Generals</h5>
+      </div>
+      <div class="light-container left">
+        <p>
+          <a href="https://expressjs.com/">Express Website</a> - Docs, resources
+          etc...
+        </p>
+        <div class="code-container">
+          <h5>Setting Up an Express Server</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+                // Import express framework
+                const express = require('express');
+
+                // Assign var to express function
+                const app = express();
+
+                // Configure root route
+                // req contains information on request
+                // res contains info to be sent
+                app.get('', (req, res) => {
+                // Send text, json, html
+                res.send('Well...');
+                });
+
+                app.get('', (req, res) => {
+                // render page from views folder
+                res.render('index');
+                });
+
+                // Start server on port 3000
+                app.listen(3000, () => {
+                console.log('Server is up on port 3000...');
+                });
+            </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Serving Assets</h5>
+          __dirname -> absolute path to directory <br />
+          __filename -> absolute path to file
+          <pre class="language-javascript"><code class="language-javascript">
+                // Import path (core), manipulated paths
+                const path = require('path');
+
+                // Serve assets from staticFile(public)
+                // Automatically serves index.html for root route
+                app.use(express.static(path.join(__dirname, '../staticFiles')));
+
+                // This is also the root when importing from other files i.e
+                <script type="prism-html-markup"><link rel="stylesheet" href="/css/styles.css" /></script>
+                // where "/" is staticFiles folder
+            </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>404 pages</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+              // Place after other routes
+              app.get('*', (req, res) => {
+                res.render('goAway');
+              });
+            </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Query Strings</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+              // In browser url: https://url.com/cars?search=make&price=5000
+
+              // In app.js 
+              app.get('/cars', (req, res) => {
+                // If no query provided
+                if (!req.query.search) {
+                  return res.send({
+                    error: 'Enter a search term...'
+                  });
+                }
+                
+                // View query
+                console.log(req.query);
+                res.send({
+                  cars: []
+                });
+              });
+            </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="container dark-container">
+      <div class="light-container left">
+        <h5 id="links">Dynamic Webpages(Templating)</h5>
+      </div>
+      <div class="light-container left">
+        <p>
+          <a href="https://www.npmjs.com/package/handlebars">Handlebars</a> -
+          <a href="https://www.npmjs.com/package/ejs">ejs</a> -
+          <a href="https://www.npmjs.com/package/pug">Pug</a><br />
+        </p>
+        <div class="code-container">
+          <h5>HandleBars(hbs)</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+                // In app.js
+                app.set('view engine', 'hbs');
+
+                app.get('', (req, res) => {
+                    // Render index.hbs from views folder and pass info to be injected in the page
+                    res.render('index', {
+                      title: 'Home Page',
+                      author: 'Dan'
+                    });
+                });
+
+                <script type="prism-html-markup"><!--In index.hbs  -->
+                <!--Insert partial  -->
+                {{>header}}
+                <h1>{{title}}</h1>
+                <h3>{{name}}</h3>
+                </script>
+            </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Serving hbs</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+              // Path to static files
+              const publicPath = path.join(__dirname, '../public');
+              // Change path to 'views' (Where hbs files are)
+              const veiwsPath = path.join(__dirname, '../templates');
+              const partialsPath = path.join(__dirname, '../templates/partials'); // Partials
+
+              app.set('view engine', 'hbs');
+              // Tell express to use path
+              app.set('views', veiwsPath);
+              hbs.registerPartials(partialsPath); //Partials
+
+              app.use(express.static(publicPath));
+            </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="container dark-container">
+      <div class="light-container left">
+        <h5 id="links">Rest API Endpoints</h5>
+      </div>
+
+      <div class="light-container left">
+        <a href="https://httpstatuses.com/"> Http Status codes</a>
+        <div class="code-container">
+          <h5>Find All Endpoint</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+              // Fetch all tasks stored in database
+              app.get('/tasks', async (req, res) => {
+                try {
+                  const tasks = await Task.find({});
+                  res.send(tasks);
+                } catch (e) {
+                  res.status(500).send();
+                }
+              });
+            </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Find One Endpoint</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+              // Fetch one task stored in database (Using route parameters)
+              app.get('/tasks/:id', async (req, res) => {
+                // Get id from req
+                const _id = req.params.id;
+
+                try {
+                  const task = await Task.findById(_id);
+                  if (!task) {
+                    return res.status(404).send();
+                  }
+                  res.send(task);
+                } catch (e) {
+                  res.status(500).send();
+                }
+              });
+            </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Create Post Endpoint</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+              // Create tasks endpoint
+              app.post('/tasks', async (req, res) => {
+                const task = new Task(req.body);
+
+                try {
+                  await task.save();
+                  res.status(201).send(task);
+                } catch (e) {
+                  res.status(400).send(e);
+                }
+              });
+            </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Patch/Update Endpoint</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+              // Update Endpoint
+              app.patch('/tasks/:id', async (req, res) => {
+                // Convert body into array of properties
+                const updates = Object.keys(req.body);
+                // Create array of properties that can be updated
+                const allowedUpdates = ['description', 'completed'];
+                // Check if field trying to be updated is valid
+                const isValid = updates.every(update => allowedUpdates.includes(update));
+
+                if (!isValid) {
+                  return res.status(400).send({ error: 'Invalid updates' });
+                }
+
+                try {
+                  const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
+                    new: true,
+                    runValidators: true
+                  });
+
+                  if (!task) {
+                    return res.status(404).send();
+                  }
+                  res.send(task);
+                } catch (e) {
+                  res.status(400).send();
+                }
+              });
+            </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Delete Endpoint</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+              // Create delete route
+              app.delete('/tasks/:id', async (req, res) => {
+                try {
+                  // Find task using id from req
+                  const task = await Task.findByIdAndDelete(req.params.id);
+
+                  if (!task) {
+                    return res.status(404).send();
+                  }
+                  res.send(task);
+                } catch (e) {
+                  res.status(500).send();
+                }
+              });
+            </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="container dark-container">
+      <div class="light-container left">
+        <h5 id="links">Express Router</h5>
+      </div>
+      <div class="light-container left">
+        Used for separating routes
+        <div class="code-container">
+          <h5>Basic Router</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+            // In some routes file
+            const express = require('express');
+            // Create new express router
+            const router = new express.Router();
+            
+            router.get('/myPage', (req, res) => {
+              res.render('somePage');
+            });
+            
+            router.get('/myOtherPage', (req, res) => {
+              res.render('someOtherPage');
+            });
+            
+            // Export routes
+            module.exports = router;
+
+
+            // In index.js/app.js
+            // Import it
+            const myRouter = require('./routers/meRoutes');
+
+            // Use it
+            app.use(myRouter);
+            </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="container dark-container">
+      <div class="light-container left">
+        <h5 id="links">Middleware</h5>
+      </div>
+      <div class="light-container left">
+        <p>
+          Allow for requests to be operated on in some way before route handler
+          runs
+        </p>
+
+        <div class="code-container">
+          <h5>Basic middleware setup</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+              // Register middleware
+              app.use((req, res, next) => {
+                console.log(req.method, req.path);
+              
+                // Call next() to let route handler run
+                next();
+              });
+            </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Use middleware for specic route</h5>
+          <p>Add as second arguement</p>
+          <pre class="language-javascript"><code class="language-javascript">
+              // Create some middleware
+              const auth = async (req, res, next) => {
+                console.log('auth middleware');
+              };
+
+              // auth === authorization middleware, add as second arguement
+              router.get('/users', auth, async (req, res) => {
+                try {
+                  const users = await User.find({});
+                  res.send(users);
+                } catch (e) {
+                  res.status(500).send();
+                }
+              });
+            </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="container dark-container">
+      <div class="light-container left">
+        <h5 id="links">File Uploads</h5>
+      </div>
+      <div class="light-container left">
+        <p></p>
+        <div class="code-container">
+          <h5>Basic MulterJS</h5>
+          <a href="https://www.npmjs.com/package/multer">multer Npm</a>
+          <pre class="language-javascript"><code class="language-javascript">
+              const multer = require('multer'); // Import multer package
+
+              // Configure multer
+              const upload = multer({
+                dest: 'myFiles', // folder where uploads are stored
+                limits: {
+                  fileSize: 1000000 // Limit file size (bytes)
+                },
+                // Filter out file extionsions
+                // File properties stored on file
+                fileFilter(req, file, cb) {
+                  // If file is not a pdf
+                  if (!file.originalname.endsWith('.pdf')) {
+                    // Send back error with callback
+                    return cb(new Error('Please Upload a PDF'));
+                  }
+
+                  cb(undefined, true); // Accept upload
+                }
+              });
+              
+              // Create post route to upload something
+              // .single('upload') => 'upload == name of uploaded file'
+              app.post('/upload', upload.single('upload'), (req, res) => {
+                res.send();
+              });
+          </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach(button =>
+        button.addEventListener('click', _ => {
+          document.getElementById('sidebar').classList.toggle('goAway');
+        })
+      );
+    </script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../../JS/prism.js"></script>
+  </body>
+</html>

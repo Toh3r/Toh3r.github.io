@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Play&display=swap"
+      rel="stylesheet"
+    />
+    <title>Node Mongo</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <span class="navbar-brand">
+        <a href="../../index.html"
+          ><img
+            id="navLogo"
+            src="../../css/images/TransparantLogo.png"
+            class="d-inline-block align-top"
+            alt="NavLogo"
+        /></a>
+      </span>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../me.html">Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../projects.html">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../cheats.html">Cheat Sheets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="sidebar" class="goAway">
+      <button id="closer" title="Close sidebar" class="side-button">X</button>
+      <div class="light-container" style="margin-top: 85px;">
+        <a href="#links"><h5>Links</h5></a>
+        <a href="#boiler"><h5>BoilerPlate</h5></a>
+        <a href="#tags"><h5>Semantic Tags</h5></a>
+      </div>
+    </div>
+    <button title="Toggle sidebar" class="side-button"><h5>Menu</h5></button>
+
+    <div class="container dark-container top-container">
+      <div class="light-container left">
+        <h5 id="links">General</h5>
+      </div>
+      <div class="light-container left">
+        <div class="code-container">
+          <h5>BcryptJS</h5>
+          <p>
+            <a href="https://www.npmjs.com/package/bcryptjs">npm page</a><br />
+            Uses hash and salt
+          </p>
+          <pre class="language-javascript"><code class="language-javascript">
+                const bcrypt = require('bcryptjs');
+
+                const hashFunction = async () => {
+                  const password = 'hello123';
+                  // passing pword + number of hashing rounds
+                  // Bcrypt returns a promise
+                  const hashed = await bcrypt.hash(password, 8);
+
+                  console.log(hashed);
+
+                  // Check if paswwords match
+                  const isMatch = await bcrypt.compare('hello123', hashed);
+                  // Returns a boolean
+                  console.log(isMatch);
+                };
+                
+                hashFunction();
+              </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="container dark-container">
+      <div class="light-container left">
+        <div class="code-container">
+          <h5>Authentication tokens/JWT's</h5>
+          <p>
+            <a href="https://www.npmjs.com/package/jsonwebtoken"
+              >Json Web Tokens (JWT) npm</a
+            >
+            <br />
+            <a
+              href="https://medium.com/@dleroari/learn-the-basics-of-json-web-tokens-jwt-and-how-it-works-in-practice-8b3b14cbe0f9"
+              >Medium article on JWT</a
+            >
+          </p>
+          <pre class="language-javascript"><code class="language-javascript">
+                const jwt = require('jsonwebtoken');
+
+                const jwtFunction = async () => {
+                  // Create json token, passing through unique id for user, token signature ('secret') and customizable options
+                  const token = jwt.sign({ _id: '123454321' }, 'random characters', {
+                    expiresIn: '7 days'
+                  });
+                
+                  // Verify token, passing token and secret
+                  jwt.verify(token, 'random characters');
+                };
+                
+                jwtFunction();
+            </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const sideButton = document.querySelectorAll('.side-button');
+      sideButton.forEach(b =>
+        b.addEventListener('click', _ => {
+          document.getElementById('sidebar').classList.toggle('goAway');
+        })
+      );
+    </script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../../JS/prism.js"></script>
+  </body>
+</html>

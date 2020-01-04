@@ -189,7 +189,7 @@ nav .nav-link:hover {
   border: 6px solid rgb(15, 15, 15);
   border-radius: 10px;
   background: rgb(10, 10, 10);
-  color: white;
+  color: rgb(255, 255, 255);
   animation: fadein 3s;
 }
 

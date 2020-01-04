@@ -16,7 +16,7 @@
       href="https://fonts.googleapis.com/css?family=Play&display=swap"
       rel="stylesheet"
     />
-    <title>HTML</title>
+    <title>NodeJS</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -71,13 +71,531 @@
 
     <div class="container dark-container top-container">
       <div class="light-container left">
-        <h5 id="links">Links</h5>
+        <h5 id="links">General</h5>
+      </div>
+      <div class="light-container left">
+        <div class="code-container">
+          <h5>Running a node app</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+            node app.js 
+            nodemon app.js
+
+            // Watch changes to certain extensions
+            nodemon app.js -e js,hbs
+
+            // Add start script to package.json 
+            "scripts": {
+              "start": "node app.js",
+              "dev": "nodemon app.js -e js, hbs"
+            }
+
+            // Then ->
+            npm start // or
+            npm run dev
+            
+
+            // initialize with with default values
+            npm init -y
+        </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Parsing cmd line args</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+            // Stored from index num [2] onwards
+            const myArgs = process.argv[2];
+            const myOtherArgs = process.argv[3];
+            const myLastArgs = process.argv[4];
+
+            //In terminal 
+            node app.js myArgs myArgs2 "my last args"
+        </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Saving/Retreiving JSON Data</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+            // Import file system
+            const fs = require('fs');
+
+            // Create a JS Object
+            const movie = {
+              title: 'Deadpool',
+              actor: 'Ryan Renolds',
+              rating: 10,
+              isGood: true
+            };
+
+            //Turn object into string
+            const movieJSON = JSON.stringify(movie);
+            // Write stingified version to new json file
+            fs.writeFileSync('movies.json', movieJSON);
+
+            // Read file - returns rubbish
+            const dataBuffer = fs.readFileSync('movies.json');
+            const dataJSON = dataBuffer.toString();
+            const data = JSON.parse(dataJSON); // Turn back to object
+        </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Error Handling</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+            try {
+              console.log(nonExistantObject);
+            } catch (e) {
+              // Kill program execution and go for a coffee
+              process.exit(1);
+            }
+        </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Obj prop shorthand syntax</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+              // Object property shorthand
+              const movieName = 'Deadpool';
+              const rating = 5;
+              
+              const movie = {
+                movieName,
+                rating,
+                length: 154
+              };
+        </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>ES6 Arrow Functions</h5>
+          <p>
+            ** Don't bind own this value like normal functions <br />
+            Bad for methods, good for everything else
+          </p>
+          <pre class="language-javascript"><code class="language-javascript">
+           // Simple arrow function
+           const printName = (name) => {
+             console.log(name);
+           }
+           printName('Alan'); // Call function
+
+           // Single line functions don't need {}
+           const add = (x,y) => x + y;
+
+           // -------- .forEach using arrow functions
+           const movie = {
+            name: 'Terminator',
+            // Array to iterate over
+            showTimes: [14.35, 16.05, 19.05, 20.15, 21.35],
+            printShowTimes() {
+              this.showTimes.forEach(time => {
+                console.log(this.name + ' is showing at: ' + time + " o'clock");
+              });
+            }
+          };
+          
+          movie.printShowTimes();
+
+          // -------- .filter using arrow functions
+          const movies = {
+            movies: [
+              {
+                name: 'Interstellar',
+                isGood: true
+              },
+              {
+                name: 'Mad Max: Fury Road',
+                isGood: false
+              },
+              {
+                name: 'Batman vs Superman',
+                isGood: false
+              }
+            ],
+            getGoodMovies() {
+               return (goodMovies = this.movies.filter(movie => movie.isGood === true));
+            }
+          };
+          
+          console.log(movies.getGoodMovies());
+        </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Object Destructuring</h5>
+          <p>Extract objs props and values into own variables</p>
+          <pre class="language-javascript"><code class="language-javascript">
+              // Object Desructuring
+              // Create object
+              const trafficCone = {
+                id: 1252
+                colour: 'Orange',
+                cost: 35,
+                location: "Eyre Square"
+              };
+              
+
+              // Pull properties of object and store then in variables
+              const { id: coneId, location, size = 'Medium' } = trafficCone;
+
+              // = Cone 1252 of size Medium in Eyre Square
+              console.log(`Cone #${coneId} of size ${size} in ${location}`);
+
+              // Object destructuring in a function
+              const maintanance = (type, { id, location }) => {
+                console.log(`Cone #${id} in ${location} needs: ${type}`);
+              };
+
+              maintanance('replace', trafficCone);
+
+              // Object destructuring in a function when no object provided
+              const maintanance = (type, { id, location } = {}) => {
+                console.log(`Cone #${id} in ${location} needs: ${type}`);
+              };
+
+              maintanance('replace'); // returns undefined for null objects
+          </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Default Function Paramaters</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+            // Provides parameters when none are given
+            const createUser = (name = 'James Bond', id = '007') => {
+              console.log(`Name: ${name}, ID: ${id}`);
+            };
+            
+            createUser('Alan', 54); // Name: Alan, ID: 54
+            createUser(); // Name: James Bond, ID: 007
+        </code></pre>
+        </div>
       </div>
     </div>
 
     <div class="container dark-container">
       <div class="light-container left">
-        <h5 id="links">General</h5>
+        <h5 id="links">Module System</h5>
+      </div>
+      <div class="light-container left">
+        <p>
+          <li>
+            <a href="https://nodejs.org/api/modules.html">Global modules</a> -
+            NodeJS Docs
+          </li>
+        </p>
+
+        <div class="code-container">
+          <h5>Importing Core Modules/Files</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+            const async_hooks = require('async_hooks'); // require module name
+            const myFile = require('./myFile'); // require relative file path
+        </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Exporting From a File</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+            // Create variable/function in external file
+            const name = 'myFileName';
+            
+            // Export
+            module.exports = name;
+
+            // ------ Export multiple functions
+            // Create functions
+            const func1 = function () {
+              return 'I am function 1';
+            }
+            const func2 = function () {
+              return 'I am function 2';
+            }
+
+            // Export functions
+            module.exports = {
+              func1: func1,
+              func2: func2
+            }
+        </code></pre>
+        </div>
+
+        <h5>NPM</h5>
+        <p>
+          Package manager for NodeJS <br />
+          Run 'npm init' in project root before using
+        </p>
+        <div class="code-container">
+          <h5>Intsalling/Importing npm packages</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+            // Installing package (In terminal)
+            npm i express
+            npm i express@10.0.0 // Specify version
+            npm i express -g // Install globally
+            npm i nodemon --save-dev // Save as dev dependency
+
+            // Import npm package
+            const express = require('express');
+          </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="container dark-container">
+      <div class="light-container left">
+        <h5 id="links">Debugging</h5>
+      </div>
+      <div class="light-container left">
+        <p>Use console logs</p>
+        <div class="code-container">
+          <h5>Node Debugger</h5>
+          <p>Pauses program execution and prints</p>
+          <pre class="language-javascript"><code class="language-javascript">
+              //When running app in terminal
+              node inspect app.js //or
+              node --inspect-brk app.js
+              open inspect
+
+              const debugMe = () => {
+                console.log("Next line is debugger");
+                debugger
+              }
+
+              // In chrome go to chrome://inspect
+            </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="container dark-container">
+      <div class="light-container left">
+        <h5 id="links">HTTP Requests</h5>
+      </div>
+      <div class="light-container left">
+        <div class="code-container">
+          <h5>Request Library</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+              const request = require('request');
+
+              // Save api url
+              const url = 'https://api-url';
+
+              // Make http req passing args as object
+              // Recieve back error or response
+              request({ url: url, json:true }, (err, res) => {
+                if(err) {
+                  // Handle err
+                } else {
+                  // Retrieve useful info from response
+                  console.log(res.body);
+                }
+              });
+            </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Nodes https Module</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+              const https = require('https');
+
+              const url = `https://someapi.dev/`;
+
+              const request = https.request(url, res => {
+                let data = '';
+
+                // Register data handler
+                // Data sent back in chuncks, concat it to one string
+                res.on('data', chunk => {
+                  data = data + chunk.toString();
+                });
+
+                // When request complete
+                res.on('end', () => {
+                  const resBody = JSON.parse(data);
+                  console.log(resBody);
+                });
+              });
+
+              // Handle errors
+              request.on('error', error => {
+                console.log('Not good... ', error);
+              });
+
+              // Send request
+              request.end();
+            </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Fetch (Client-side Http Req)</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+              // Make http request
+              fetch('http://someAPIURL').then(res => {
+                // Parse data
+                res.json().then(data => {
+                  // Use data
+                  console.log(data);
+                });
+              });
+            </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="container dark-container">
+      <div class="light-container left">
+        <h5 id="links">Callback Functions</h5>
+      </div>
+      <div class="light-container left">
+        <p>
+          Functions provided as an arguement to another function<br />
+          They are then called on completion of some task <br />
+          Allow for async programming
+        </p>
+        <div class="code-container">
+          <h5>Callback function</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+            // Callback function, passing in id and a function
+            const getName = (id, callback) => {
+                // setTimeout to imitate some api call
+                setTimeout(() => {
+                  if (id === 1) { // retrieve name 
+                    name = 'Dan';
+                  }
+                  callback(name); // call function, returning name
+                }, 2000);
+              };
+
+              // Create an id number
+              const id = 1;
+
+              // Pass id + callback to getName
+              getName(id, (err, data)=> {
+                if(err) { 
+                  console.log(err);
+                } else {
+                  console.log(data);
+                } 
+              });
+            </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="container dark-container">
+      <div class="light-container left">
+        <h5 id="links">Promises</h5>
+      </div>
+      <div class="light-container left">
+        <a
+          href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261"
+          >Medium article on Promises</a
+        >
+        <br />
+
+        <div class="code-container">
+          <h5>Standard Promise</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+              // Standard Promise
+              const iPromiseToBeTrue = new Promise((resolve, reject) => {
+                let bool = Math.random() >= 0.5; // Get random boolean
+                // Simulate time passing
+                setTimeout(() => {
+                  if (bool === true) {
+                    // When no err
+                    resolve('Kept promise');
+                  } else {
+                    // When err
+                    reject('Did not keep promise');
+                  }
+                }, 2000);
+              });
+
+              // .then() -> register a function to run when everything works i.e. when resolve() is called
+              // .catch() -> function when err, when reject() is called
+              iPromiseToBeTrue
+                .then(res => {
+                  console.log('Result: ', res);
+                })
+                .catch(err => {
+                  console.log('Result: ', err);
+                });
+            </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Promise Chaining</h5>
+          <p>Chaining Multiple .then() calls</p>
+          <pre class="language-javascript"><code class="language-javascript">
+              // Create callback function, returning a promise
+              const add = (a, b) => {
+                return new Promise((resolve, reject) => {
+                  setTimeout(() => {
+                    resolve(a + b);
+                  }, 2000);
+                });
+              };
+
+              // Call function
+              add(2, 2)
+                .then(sum => {
+                  console.log(sum);
+                  // Must return a promise
+                  return add(sum, 4);
+                })
+                .then(sum2 => { // Promise chaining
+                  console.log(sum2);
+                })
+                .catch(e => {
+                  console.log(e);
+                });
+            </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="container dark-container">
+      <div class="light-container left">
+        <h5 id="links">Async/Await</h5>
+      </div>
+      <div class="light-container left">
+        <p>
+          Async functions always return a promise i.e <br />
+          can treat data returned from function as promise(.then({}).catch({}))
+          await -> Gives access to value returned from async function <br />
+          Limits the need for promise chaining <br />
+          Allows for operations on each of the returned values
+        </p>
+
+        <div class="code-container">
+          <h5>Standard async/await</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+            // Create function returning a promise
+            const add = (a, b) => {
+              return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  resolve(a + b);
+                }, 2000);
+              });
+            };
+            
+            // Async Function
+            const myAsyncFunc = async () => {
+              // await giving access to retuned value
+              const sum = await add(1, 49);
+              // Pass returned values back into sum
+              const sum2 = await add(sum, 50);
+              const sum3 = await add(sum2, 50);
+              return sum3;
+            };
+            
+            // Call async function
+            myAsyncFunc()
+              .then(res => {
+                console.log('Result: ', res);
+              })
+              .catch(e => {
+                console.log('Error: ', e);
+              });
+            </code></pre>
+        </div>
       </div>
     </div>
 

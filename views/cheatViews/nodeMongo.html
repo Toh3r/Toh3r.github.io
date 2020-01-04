@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Play&display=swap"
+      rel="stylesheet"
+    />
+    <title>Node Mongo</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <span class="navbar-brand">
+        <a href="../../index.html"
+          ><img
+            id="navLogo"
+            src="../../css/images/TransparantLogo.png"
+            class="d-inline-block align-top"
+            alt="NavLogo"
+        /></a>
+      </span>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../me.html">Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../projects.html">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../cheats.html">Cheat Sheets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="sidebar" class="goAway">
+      <button id="closer" title="Close sidebar" class="side-button">X</button>
+      <div class="light-container" style="margin-top: 85px;">
+        <a href="#links"><h5>Links</h5></a>
+        <a href="#boiler"><h5>BoilerPlate</h5></a>
+        <a href="#tags"><h5>Semantic Tags</h5></a>
+      </div>
+    </div>
+    <button title="Toggle sidebar" class="side-button"><h5>Menu</h5></button>
+
+    <div class="container dark-container top-container">
+      <div class="light-container left">
+        <h5 id="links">General</h5>
+      </div>
+      <div class="light-container left">
+        <a href="https://docs.mongodb.com/">MongoDB Docs</a> <br />
+        <a
+          href="https://mongodb.github.io/node-mongodb-native/3.3/api/index.html"
+          >Node.js MongoDB Driver API</a
+        >
+        <br /><br />
+        <h5>Local Installation</h5>
+        <p>
+          -> go <a href="https://www.mongodb.com/">here</a> to mongodb.com
+          <br />
+          -> click try free, then click server, change package to zip and
+          download <br />
+          -> Extract from zip, rename to mongodb, move file somewhere on machine
+          (users) <br />
+          -> Create a new folder for saving data (mongodb-data)
+        </p>
+
+        <div class="code-container">
+          <h5>Start Up</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+            // Start mongodb from terminal. .exe file followed by data folder path
+            /Users/Dan/mongodb/bin/mongod.exe --dbpath=/Users/Dan/mongodb-data
+
+            // If output contains waiting for connections of port 27017 then it worked...
+        </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Connecting/Inserting</h5>
+          npm i mongodb
+          <pre class="language-javascript"><code class="language-javascript">
+                const mongodb = require('mongodb'); // Import mongodb
+                const MongoClient = mongodb.MongoClient; // Connect to database
+                
+                const connectionURL = 'mongodb://127.0.0.1:27017'; // Db server url
+                const database = 'my-db'; // Database name
+                
+                // Setup connection to database
+                MongoClient.connect(
+                  connectionURL,
+                  { useNewUrlParser: true },
+                  (error, client) => {
+                    if (error) {
+                      return console.log('Unable to connect to db...');
+                    }
+                
+                    // Db to be manipulated
+                    const db = client.db(database);
+                
+                    // Instert document to db
+                    // 'users' == db collection
+                    db.collection('users').insertOne(
+                      {
+                        name: 'Dan',
+                        age: 27
+                      },
+                      (error, result) => {
+                        if (error) {
+                          return console.log('Unable to insert into db...');
+                        }
+                
+                        console.log(result.ops); // Prints array of documents
+                      }
+                    );
+
+                    // Insert multiple docs to db
+                    db.collection('users').insertMany(
+                        [
+                            {
+                            name: 'Alan',
+                            age: 25
+                            },
+                            {
+                            name: 'James',
+                            age: 42
+                            }
+                        ],
+                        (error, result) => {
+                            if (error) {
+                            return console.log('Unable to insert into db...');
+                            }
+                            console.log(result.ops);
+                        }
+                    );
+                  }
+                );
+        </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>DB Querys</h5>
+          <a
+            href="https://mongodb.github.io/node-mongodb-native/3.3/api/Cursor.html"
+            >NodeJS Find Cursor Methods</a
+          >
+          <pre class="language-javascript"><code class="language-javascript">
+                //Find one record
+                db.collection('users').findOne({ name: 'Dan' }, (error, user) => {
+                    if (error) {
+                        return console.log('Unable to find record...');
+                    }
+                    console.log(user);
+                });
+
+                // Search using _id
+                db.collection('users').findOne(
+                    { _id: new ObjectID('5dc19c73e20c763db0f79aa4') },
+                    (error, user) => {
+                        if (error) {
+                            return console.log('Unable to find record...');
+                        }
+                        console.log(user);
+                    }
+                );
+
+                // Find multiple records and store in array
+                // find() returns cursor which needs to be manipulated in some way i.e. .toArray()
+                db.collection('users')
+                .find({ name: 'Dan' })
+                .toArray((error, users) => {
+                    if (error) {
+                    return console.log('Unable to find records...');
+                    }
+
+                    console.log(users);
+                });
+
+                // Count records in a db
+                db.collection('users')
+                .find({ name: 'Dan' })
+                .count((error, count) => {
+                    if (error) {
+                    return console.log('Unable to find records...');
+                    }
+
+                    console.log(count);
+                });
+            </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Update</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+            // Update One record => returns a promise
+            db.collection('my-db')
+            .updateOne(
+                {
+                    _id: new ObjectID('5dc19c73e20c763db0f79aa4')
+                },
+                {
+                    // Create update operator: $set => Set new values for fields in doc
+                    $set: {
+                        name: 'Peadar'
+                    }
+                }
+            )
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+            // Increment a field in a field in a doc 
+            db.collection('my-db')
+            .updateOne(
+                {
+                 _id: new ObjectID('5dc19c73e20c763db0f79aa4')
+                },
+                {
+                // Create update operator: $inc => Increment a field by some value
+                $inc: {
+                    age: 1
+                }
+                }
+            )
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+            // Update Multiple docs
+            db.collection('my-db')
+            .updateMany(
+                {
+                    name: 'Dan'
+                },
+                {
+                    // Create update operator: $set => Set new values for fields in doc
+                    $set: {
+                        name: 'Daniel'
+                    }
+                }
+            )
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+            </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Delete</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+            // Delete one record
+            db.collection('my-db')
+                .deleteOne({
+                name: 'Alan'
+                })
+                .then(res => {
+                console.log(res);
+                })
+                .catch(err => {
+                console.log(err);
+                });
+
+            // Delete multiple records
+            db.collection('my-db')
+                .deleteMany({
+                name: 'Daniel'
+                })
+                .then(res => {
+                console.log(res);
+                })
+                .catch(err => {
+                console.log(err);
+                });
+            </code></pre>
+        </div>
+      </div>
+
+      <div class="light-container left">
+        <h5>Robo 3T (Robo Mongo)</h5>
+        -> Database GUI
+      </div>
+
+      <div class="light-container left">
+        <h5>Mongoose</h5>
+        <p>
+          Object modeling tool for MongoDB <br />
+          Object document mapper (ODM) -> Map objects to docuemnts in MongoDB
+          Database<br />
+          <a href="https://www.npmjs.com/package/mongoose">mongoose npm</a
+          ><br />
+          <a href="https://mongoosejs.com/docs/guide.html">Mongoose Docs</a>
+        </p>
+
+        <div class="code-container">
+          <h5>Connect To a DB</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+            const mongoose = require('mongoose');
+
+            // Connect to db, db name goes at end of url
+            mongoose.connect('mongodb://127.0.0.1:27017/my-database', {
+              useNewUrlParser: true,
+              useCreateIndex: true 
+            });
+            </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Create/Save simple instance of model</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+            // Create a model, passing through name and field definitions
+            const Car = mongoose.model('Car', {
+              make: {
+                type: String // Specify model type
+              },
+              mine: {
+                type: Boolean
+              }
+            });
+
+            // Create instance of model
+            const carInstance = new Car({
+              make: 'Lambo',
+              mine: false
+            });
+
+            // Save instance to db, returns a promise
+            carInstance
+              .save()
+              .then(() => {
+                console.log("Saved: ", carInstance);
+              })
+              .catch(e => {
+                console.log('Error: ', e);
+              });
+            </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Create Model Using a Schema</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+              const userSchema = new mongoose.Schema(
+                // First object defines schema
+                {
+                  name: {
+                    type: String, // Specify model type
+                    required: true,
+                    trim: true
+                  },
+                  email: {
+                    type: String,
+                    unique: true,
+                    required: true,
+                    trim: true,
+                    lowercase: true,
+                    validate(value) {
+                      if (!validator.isEmail(value)) {
+                        throw new Error('Email is invalid');
+                      }
+                    }
+                  },
+                  age: {
+                    type: Number,
+                    default: 0,
+                    // Create a custom validator, passing through value to be validated
+                    validate(value) {
+                      if (value < 0) {
+                        throw new Error('Age must be a positive number');
+                      }
+                    }
+                  },
+                  password: {
+                    type: String,
+                    required: true,
+                    trim: true,
+                    minlength: 6,
+                    validate(value) {
+                      if (value.toLowerCase().includes('password')) {
+                        throw new Error('Password cannot contain password');
+                      }
+                    }
+                  },
+                  tokens: [ // Used for authentication
+                    {
+                      token: {
+                        type: String,
+                        required: true
+                      }
+                    }
+                  ]
+                },
+                // Second arg defines schema options
+                {
+                  // Tracks when user created/updated
+                  timestamps: true
+                }
+              );
+
+              // Create a model, passing through name and defined fields
+              const User = mongoose.model('User', userSchema);
+            </code></pre>
+        </div>
+
+        <h5>Validation and Sanitization</h5>
+        <p>
+          Validation - Data conforms to some rules <br />
+          Sanitization - Alter data before saving it
+        </p>
+
+        <div class="code-container">
+          <h5>Vanilla Validation</h5>
+          Doesn't do a hole lot
+          <pre class="language-javascript"><code class="language-javascript">
+            // Create a model, passing through name and defined fields
+            const car = mongoose.model('Car', {
+              make: {
+                type: String, // Specify model type
+                required: true // Must be entered
+              },
+              numOwned: {
+                type: Number,
+                // Create a custom validator, passing through value to be validated
+                validate(value) {
+                  if (value < 0) {
+                    throw new Error('You cannot enter a car you don't own');
+                  }
+                }
+              }
+            });
+
+            // Theres a few more (check docs)
+            </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Validator Npm</h5>
+          <a href="https://www.npmjs.com/package/validator">validator npm</a
+          ><br />
+          Validates loads of stuff
+          <pre class="language-javascript"><code class="language-javascript">
+           const car = mongoose.model('Car', {
+             make: String
+           },
+           website: {
+            type: String,
+            required: true,
+            validate(value) {
+              if (!validator.isURL(value)) {
+                throw new Error('URL is invalid');
+              }
+            }
+          })
+
+          // Sanatized Field 
+          userName: {
+            type: String,
+            required: true,
+            trim: true,
+            minlength: 6,
+            validate(value) {
+              if (value.toLowerCase().includes('userName')) {
+                throw new Error('User name cannot contain userName');
+              }
+            }
+          }
+            </code></pre>
+        </div>
+      </div>
+
+      <div class="light-container left">
+        <h5 id="links">Mongoose Queries</h5>
+        <a href="https://mongoosejs.com/docs/queries.html"
+          >List of Mongoose Queries</a
+        >
+        <div class="code-container">
+          <pre class="language-javascript"><code class="language-javascript">
+            // Read All
+            User.find({})
+              .then(users => {
+                console.log(users);
+              })
+              .catch(e => {
+                console.log(e);
+              });
+
+              // Find by id
+              const _id = req.params.id;
+              User.findById({ _id })
+                .then(user => {
+                  if (!user) {
+                    // When id does not match any user
+                    console.log('No user...');
+                  }
+                  // When user is found
+                  conaole.log(user)
+                })
+                .catch(e => {
+                  console.log(e)
+                });
+              </code></pre>
+        </div>
+
+        <div class="code-container">
+          <h5>Using async/await try/catch</h5>
+          <pre class="language-javascript"><code class="language-javascript">
+            const _id = req.params.id;
+            try {
+              const user = await User.findById(_id);
+              if (!user) {
+                console.log('No user...');
+              }
+              conaole.log(user)
+            } catch (e) {
+              console.log(e)
+            }
+              </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const sideButton = document.querySelectorAll('.side-button');
+      sideButton.forEach(b =>
+        b.addEventListener('click', _ => {
+          document.getElementById('sidebar').classList.toggle('goAway');
+        })
+      );
+    </script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../../JS/prism.js"></script>
+  </body>
+</html>

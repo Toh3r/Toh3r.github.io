@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Play&display=swap"
+      rel="stylesheet"
+    />
+    <title>NodeJS</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <span class="navbar-brand">
+        <a href="../../index.html"
+          ><img
+            id="navLogo"
+            src="../../css/images/TransparantLogo.png"
+            class="d-inline-block align-top"
+            alt="NavLogo"
+        /></a>
+      </span>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../me.html">Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../projects.html">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../cheats.html">Cheat Sheets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="sidebar" class="goAway">
+      <button id="closer" title="Close sidebar" class="side-button">X</button>
+      <div class="light-container" style="margin-top: 85px;">
+        <a href="#links"><h5>Links</h5></a>
+        <a href="#boiler"><h5>BoilerPlate</h5></a>
+        <a href="#tags"><h5>Semantic Tags</h5></a>
+      </div>
+    </div>
+    <button title="Toggle sidebar" class="side-button"><h5>Menu</h5></button>
+
+    <div class="container dark-container top-container">
+      <div class="light-container left">
+        <h5 id="links">API's</h5>
+      </div>
+      <div class="light-container left">
+        <p>
+          <a
+            href="https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en"
+            >JSON Formatter</a
+          >
+          - Chrome extension <br />
+          <div class="code-container">
+            <h5>DarkSky</h5>
+            <a href="https://darksky.net/dev">Darksky</a>
+            - Weather - 100 reqs per day - Chrome extension <br />
+            <pre class="language-javascript"><code class="language-javascript">
+                    <div class="code-container">
+                        <pre class="language-javascript"><code class="language-javascript">
+                        const request = require('request');
+                        
+                        // Function to retrieve weather data
+                        const forecast = (lat, long, callback) => {
+                            const url = `https://api.darksky.net/forecast/g3ty0urownTok3nm8/${lat},${long}`;
+                        
+                            request({ url: url, json: true }, (err, res) => {
+                                // Handle errors
+                                if (err) {
+                                    callback('Unable to connect to weather services...', undefined);
+                                } else if (res.body.error) {
+                                    callback('Unable to find location...', undefined);
+                                } else { // Else send back retrieved info
+                                    callback(undefined, {
+                                    summary: res.body.daily.data[0].summary,
+                                    temp: res.body.currently.temperature,
+                                    percip: res.body.currently.precipProbability
+                                    });
+                                }
+                            });
+                        };
+
+                        // Call function to retrieve weather data
+                        forecast(53.9, -9.25, (err, data) => {
+                        console.log('Error', err);
+                        console.log('Data', data);
+                        });
+                        </code></pre>
+                    </div>                
+            </code></pre>
+            </div>
+            <h5>MapBox</h5>
+          <a href="https://www.mapbox.com">Mapbox</a>
+          - GeoLocation API - 25,000 reqs per day
+        </p>
+        <div class="code-container">
+          <pre class="language-javascript"><code class="language-javascript">
+                const request = require('request');
+
+                // Function to retrieve lat/long of a location passing through address and callback function
+                const geocode = (address, callback) => {
+                  //Mapbox API url, passing in address
+                  const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
+                    address
+                  )}.json?access_token=g3ty0urownTok3nm8&limit=1`;
+                
+                  // Call API
+                  request({ url: url, json: true }, (err, res) => {
+                    // Handle errors
+                    if (err) {
+                      callback('Unable to connect to location services...', undefined);
+                    } else if (res.body.features[0] === undefined) {
+                      callback('Unable to find location...', undefined);
+                    } else {
+                      const response = res.body.features[0];
+                      // Send back retreived data
+                      callback(undefined, {
+                        location: response.place_name,
+                        lat: response.center[1],
+                        long: response.center[0]
+                      });
+                    }
+                  });
+                };
+                
+                // Call function to retrieve geocode data
+                geocode('Galway', (err, data) => {
+                  console.log('Error: ', err);
+                  console.log('Data: ', data);
+                });
+            </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach(button =>
+        button.addEventListener('click', _ => {
+          document.getElementById('sidebar').classList.toggle('goAway');
+        })
+      );
+    </script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../../JS/prism.js"></script>
+  </body>
+</html>
